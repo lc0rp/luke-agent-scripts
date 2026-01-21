@@ -26,6 +26,8 @@ http://dev.quail-mercat.ts.net:7777/open?vault=Obsidian-Notes&file=0-Inbox/Tasks
 Notes:
 - Keep the **entire** query string; only scheme/host/port change from `obsidian://open`.
 - Percent-encode the `file=` path the same way Obsidian expects.
+- Use the **Tailscale host/IP** (e.g., `dev.quail-mercat.ts.net`) for shareable links.
+- **Do not** use `127.0.0.1` unless the link is only for your own browser on the same host.
 - Default port is `7777` (unless overridden by config).
 
 ## Convert from obsidian://open
