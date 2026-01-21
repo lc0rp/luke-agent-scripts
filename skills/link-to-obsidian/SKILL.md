@@ -1,15 +1,15 @@
 ---
 name: link-to-obsidian
-description: Generate or explain link-to-obsidian HTTP links and verify/manage the link-to-obsidian redirect service on the devbox (systemd service: link-to-obsidian). Use when you need shareable http(s) links that open Obsidian notes, or when checking/restarting the redirect service.
+description: Generate shareable http(s) links that redirect into Obsidian via the link-to-obsidian service. Use when sending Obsidian note links in chat apps (Discord/WhatsApp) that can’t open obsidian:// URLs, or when converting obsidian://open links to http(s) format.
 ---
 
-# Link-to-Obsidian
+# Link-to-Obsidian (usage)
 
 ## Overview
 
-Use the link-to-obsidian service to turn shareable http(s) links into `obsidian://open` deep links. This is useful for chats/apps that only allow http(s) URLs (Discord/WhatsApp).
+Generate HTTP links that redirect to `obsidian://open` so they’re clickable in apps that only allow http(s) links.
 
-## Quick start (generate a link)
+## Quick start
 
 Format:
 
@@ -24,28 +24,25 @@ http://dev.quail-mercat.ts.net:7777/open?vault=Obsidian-Notes&file=0-Inbox/Tasks
 ```
 
 Notes:
-- Preserve the **entire** query string; only the scheme/host/port change from `obsidian://open`.
+- Keep the **entire** query string; only scheme/host/port change from `obsidian://open`.
 - Percent-encode the `file=` path the same way Obsidian expects.
+- Default port is `7777` (unless overridden by config).
 
-## Check service status / logs
+## Convert from obsidian://open
 
-```bash
-systemctl status link-to-obsidian --no-pager
-journalctl -u link-to-obsidian -f
+Given:
+
+```
+obsidian://open?vault=Vault&file=Inbox/Note.md
 ```
 
-## Config
+Convert to:
 
-- Env file: `/etc/link-to-obsidian/link-to-obsidian.env` (override with `LTO_CONFIG`)
-- Common keys: `LTO_TAILSCALE_IP`, `LTO_TAILSCALE_DNS`, `LTO_VAULT_NAME`, `LTO_SAMPLE_FILE`, `PORT` (default 7777)
-
-## Restart
-
-```bash
-sudo systemctl restart link-to-obsidian
+```
+http://<host>:<port>/open?vault=Vault&file=Inbox/Note.md
 ```
 
-## Source / docs
+## Troubleshooting link format
 
-- Repo: `/data/projects/link-to-obsidian`
-- See: `README.md`, `spec.md`
+- If the link doesn’t open, check for bad encoding in `file=` or a missing `vault=`.
+- If unsure of host/port, check `/etc/link-to-obsidian/link-to-obsidian.env` (read-only) for `LTO_TAILSCALE_DNS`, `LTO_TAILSCALE_IP`, and `PORT`.
