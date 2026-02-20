@@ -1,0 +1,40 @@
+{
+  // Obsidian vault Markdown linting (markdownlint-cli2)
+  // Goal: catch real Markdown issues without flagging valid Obsidian-flavored Markdown
+  // (wikilinks, embeds, callouts, frontmatter/properties, HTML, Mermaid, LaTeX).
+  "globs": [
+    "0-Inbox/**/*.md",
+    "1-Projects/**/*.md",
+    "2-Areas/**/*.md",
+    "3-Resources/**/*.md",
+    "4-Archive/**/*.md"
+  ],
+  "ignores": [
+    "**/.git/**",
+    "**/.obsidian/**",
+    "**/.trash/**",
+    "**/.claude/**",
+    "**/.codex/**",
+    "**/.vscode/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**"
+  ],
+  "config": {
+    "default": true,
+
+    // Common Obsidian patterns (see obsidian-markdown skill)
+    "MD013": false, // line length (notes frequently have long lines)
+    "MD033": false, // inline HTML is valid in Obsidian
+    "MD041": false, // first line heading (notes often start with YAML frontmatter)
+    "MD040": false, // fenced code blocks don't always specify a language
+    "MD026": false, // punctuation in headings is often intentional
+    "MD028": false, // blank lines inside blockquotes are common (callouts/quotes)
+
+    // Reduce false positives while still catching true duplicates
+    "MD024": { "allow_different_nesting": true },
+
+    // Two trailing spaces are a hard line break in Markdown/Obsidian
+    "MD009": { "br_spaces": 2 }
+  }
+}

@@ -1,5 +1,5 @@
----
-name: ask-questions-if-underspecified
+---ask-questions-if-underspecified
+name: 
 description: Clarify requirements before implementing. Do not use automatically, only when invoked explicitly.
 ---
 

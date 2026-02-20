@@ -7,20 +7,20 @@ description: How to connect to Luke's Mac over Tailscale via SSH.
 
 ## When to use
 
-Use this when you need terminal access to Luke's Mac (e.g., building or packaging the macOS app).
+Use this when you need terminal access to Luke's Mac (e.g., building or packaging the macOS app). If you are already on the mac, you don't need this.
 
 ## Connection details
 
 - Host: 100.67.77.99 (Tailscale IP)
 - User: luke
-- Key: /home/ubuntu/.ssh/clawdbot_macos_ed25519 (public at /home/ubuntu/.ssh/clawdbot_macos_ed25519.pub)
+- Key: /home/ubuntu/.ssh/openclaw_devbox_ed25519 (public at /home/ubuntu/.ssh/openclaw_devbox_ed25519.pub)
 - Auth: publickey only; password auth is rejected
 - Network: Tailscale only; do not use WAN port 22
 
 ## Connect
 
 ```bash
-ssh -i ~/.ssh/clawdbot_macos_ed25519 luke@100.67.77.99
+ssh -i ~/.ssh/openclaw_devbox_ed25519 luke@100.67.77.99
 ```
 
 ## Optional SSH config
@@ -31,7 +31,7 @@ Add to `~/.ssh/config` for a short alias:
 Host luke-mac
   HostName 100.67.77.99
   User luke
-  IdentityFile ~/.ssh/clawdbot_macos_ed25519
+  IdentityFile ~/.ssh/openclaw_devbox_ed25519
   IdentitiesOnly yes
 ```
 
