@@ -1,6 +1,6 @@
 ---
 name: luke-obsidian
-description: Understand Luke's second brain: Understand and interact with Luke's precious Obsidian vault, understand its structure, answer questions about notes and links, manage projects for Luke, run vault maintenance.
+description: Understand Luke's second brain; Understand and interact with Luke's precious Obsidian vault, understand its structure, answer questions about notes and links, manage projects for Luke, run vault maintenance.
 ---
 
 # Luke-Obsidian (usage)
